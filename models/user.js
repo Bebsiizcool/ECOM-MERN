@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/scatch")
 
 const usermodel = mongoose.Schema({
     fullname : String,
