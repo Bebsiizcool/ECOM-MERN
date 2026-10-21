@@ -10,7 +10,7 @@ const usermodel = mongoose.Schema({
         defualt: []
     },
 
-    isadmin: Boolean,
+    
     orders: {
         type: Array,
         defualt: []
