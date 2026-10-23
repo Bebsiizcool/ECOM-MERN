@@ -6,7 +6,7 @@ const productmodel = mongoose.Schema({
     price: Number,
     discount: {
         type: Number,
-        defualt: 0
+        default: 0
     },
     bgcolor: String,
     panelcolor: String,

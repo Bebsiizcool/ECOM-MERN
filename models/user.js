@@ -5,15 +5,15 @@ const usermodel = mongoose.Schema({
     fullname : String,
     email: String,
     password: String,
-    cart: {
-        type: Array,
-        defualt: []
-    },
+    cart: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product"
+    }],
 
     
     orders: {
         type: Array,
-        defualt: []
+        default: []
     },
 
     contact: Number,
