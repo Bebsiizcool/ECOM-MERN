@@ -24,7 +24,12 @@ app.use(flash())
 app.use(expressSession({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.EXPRESS_SESSION_SECRET
+    secret: process.env.EXPRESS_SESSION_SECRET,
+      cookie: {
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        sameSite: "lax"
+    }
 }))
 
 app.use("/", indexRouter)
