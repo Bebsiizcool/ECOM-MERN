@@ -1,55 +1,294 @@
+
 <%- include('./partials/header') %>
 
-    <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
-        </div>
-        <% } %>
+<div class="min-h-screen bg-[#F7F4EE]">
 
-            <div class="min-h-screen flex flex-col">
-                <div class="container px-10 py-20 flex flex-grow">
-                    <div class="w-[25%] flex h-screen flex-col items-start">
-                        <div class="flex flex-col">
-                            <a class="block w-fit mb-2" href="">All Products</a>
-                            <a class="block w-fit mb-2" href="">Create new product</a>
-                        </div>
-                    </div>
-                    <main class="w-3/4 bg-white p-8 shadow ml-4">
-                        <h2 class="text-xl font-bold mb-4">Create New Product</h2>
-                        <form autocomplete="off" action="/products/create" method="POST" enctype="multipart/form-data">
-                            <div class="mb-6">
-                                <h3 class="text-lg font-semibold mb-2">Product Details</h3>
-                                <div class="mb-4">
-                                    <label class="block mb-2 font-medium">Product Image</label>
-                                    <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="name" type="text" placeholder="Product Name"
-                                        class="border p-2 rounded w-full">
-                                    <input name="price" type="text" placeholder="Product Price"
-                                        class="border p-2 rounded w-full">
-                                    <input name="discount" type="text" placeholder="Discount Price"
-                                        class="border p-2 rounded w-full">
-                                </div>
+    <!-- Success Message -->
+    <% if (success && success.length > 0) { %>
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50
+                    px-6 py-3 rounded-lg bg-[#263A33] text-white shadow-lg">
+            <span><%= success[0] %></span>
+        </div>
+    <% } %>
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-[#263A33] text-[#F7F4EE] p-8">
+
+            <a href="/shop" class="text-3xl font-bold tracking-tight">
+                scatch<span class="text-[#C69A6B]">.</span>
+            </a>
+
+            <p class="text-sm text-[#D5D8D1] mt-2 mb-10">
+                Product Management
+            </p>
+
+            <nav class="flex flex-col gap-3">
+
+                <a href="/owners/allproducts"
+                   class="px-4 py-3 rounded-lg hover:bg-[#354C43] transition">
+                    <i class="ri-shopping-bag-3-line mr-2"></i>
+                    All Products
+                </a>
+
+                <a href="/owners/createproducts"
+                   class="px-4 py-3 rounded-lg bg-[#C69A6B] text-[#263A33] font-semibold">
+                    <i class="ri-add-circle-line mr-2"></i>
+                    Create New Product
+                </a>
+
+            </nav>
+
+            <div class="mt-12 border-t border-[#46594F] pt-6">
+                <p class="text-xs text-[#D5D8D1]">
+                    Admin Dashboard
+                </p>
+                <p class="text-sm mt-1">
+                    Manage your Scatch store
+                </p>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-5 md:p-10 lg:p-14">
+
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Page Heading -->
+                <div class="mb-8">
+                    <p class="text-sm uppercase tracking-[0.2em] text-[#9A7B59] font-semibold">
+                        Admin Dashboard
+                    </p>
+
+                    <h1 class="text-3xl md:text-4xl font-bold text-[#263A33] mt-2">
+                        Create New Product
+                    </h1>
+
+                    <p class="text-[#77796F] mt-3">
+                        Add a new product to your Scatch store.
+                    </p>
+                </div>
+
+                <!-- Product Form -->
+                <form
+                    autocomplete="off"
+                    action="/products/create"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="bg-white rounded-2xl shadow-sm border border-[#E8E3D9] p-6 md:p-9"
+                >
+
+                    <!-- Product Details -->
+                    <div class="mb-9">
+
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-[#E9EFE9] flex items-center justify-center text-[#263A33]">
+                                <i class="ri-shopping-bag-3-line text-xl"></i>
                             </div>
 
                             <div>
-                                <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="bgcolor" type="text" placeholder="Background Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="panelcolor" type="text" placeholder="Panel Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="textcolor" type="text" placeholder="Text Color"
-                                        class="border p-2 rounded w-full">
-                                </div>
+                                <h2 class="text-xl font-semibold text-[#263A33]">
+                                    Product Details
+                                </h2>
+                                <p class="text-sm text-[#77796F]">
+                                    Basic information about your product
+                                </p>
                             </div>
-                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
-                                value="Create New Product">
-                        </form>
-                    </main>
-                </div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                Product Image
+                            </label>
+
+                            <input
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                required
+                                class="block w-full text-sm text-[#77796F]
+                                       file:mr-4 file:py-2.5 file:px-5
+                                       file:rounded-lg file:border-0
+                                       file:bg-[#E9EFE9] file:text-[#263A33]
+                                       file:font-medium hover:file:bg-[#DCE6DC]
+                                       border border-[#E8E3D9] rounded-xl p-3"
+                            >
+                        </div>
+
+                        <!-- Name -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                Product Name
+                            </label>
+
+                            <input
+                                name="name"
+                                type="text"
+                                placeholder="e.g. Everyday Backpack"
+                                required
+                                class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                       text-[#263A33] placeholder:text-[#A5A59B]
+                                       focus:outline-none focus:border-[#263A33]
+                                       focus:ring-2 focus:ring-[#263A33]/10 transition"
+                            >
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                            <div>
+                                <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                    Price (Rs)
+                                </label>
+
+                                <input
+                                    name="price"
+                                    type="number"
+                                    min="0"
+                                    placeholder="2500"
+                                    required
+                                    class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                           text-[#263A33] placeholder:text-[#A5A59B]
+                                           focus:outline-none focus:border-[#263A33]
+                                           focus:ring-2 focus:ring-[#263A33]/10 transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                    Discount (Rs)
+                                </label>
+
+                                <input
+                                    name="discount"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                                    placeholder="300"
+                                    class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                           text-[#263A33] placeholder:text-[#A5A59B]
+                                           focus:outline-none focus:border-[#263A33]
+                                           focus:ring-2 focus:ring-[#263A33]/10 transition"
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Panel Details -->
+                    <div class="border-t border-[#EEEAE2] pt-8">
+
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-[#F4EBDD] flex items-center justify-center text-[#9A7B59]">
+                                <i class="ri-palette-line text-xl"></i>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl font-semibold text-[#263A33]">
+                                    Product Colors
+                                </h2>
+                                <p class="text-sm text-[#77796F]">
+                                    Customize the product card appearance
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+                            <div>
+                                <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                    Background Color
+                                </label>
+
+                                <input
+                                    name="bgcolor"
+                                    type="text"
+                                    value="#E9EFE9"
+                                    placeholder="#E9EFE9"
+                                    required
+                                    class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                           text-[#263A33] focus:outline-none
+                                           focus:border-[#263A33] transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                    Panel Color
+                                </label>
+
+                                <input
+                                    name="panelcolor"
+                                    type="text"
+                                    value="#FFFFFF"
+                                    placeholder="#FFFFFF"
+                                    required
+                                    class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                           text-[#263A33] focus:outline-none
+                                           focus:border-[#263A33] transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-[#263A33] mb-2">
+                                    Text Color
+                                </label>
+
+                                <input
+                                    name="textcolor"
+                                    type="text"
+                                    value="#263A33"
+                                    placeholder="#263A33"
+                                    required
+                                    class="w-full border border-[#DEDCD3] rounded-xl px-4 py-3
+                                           text-[#263A33] focus:outline-none
+                                           focus:border-[#263A33] transition"
+                                >
+                            </div>
+
+                        </div>
+
+                        <p class="text-xs text-[#77796F] mt-3">
+                            Enter a valid CSS color, such as #263A33 or #F7F4EE.
+                        </p>
+
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="border-t border-[#EEEAE2] mt-8 pt-6 flex flex-col sm:flex-row gap-4 justify-end">
+
+                        <a
+                            href="/shop"
+                            class="px-6 py-3 rounded-xl border border-[#DEDCD3]
+                                   text-[#263A33] text-center font-medium
+                                   hover:bg-[#F7F4EE] transition"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="px-7 py-3 rounded-xl bg-[#263A33] text-white
+                                   font-semibold hover:bg-[#354C43]
+                                   shadow-sm transition"
+                        >
+                            <i class="ri-add-line mr-1"></i>
+                            Create Product
+                        </button>
+
+                    </div>
+
+                </form>
+
             </div>
-            <%- include('./partials/footer') %>
+
+        </main>
+
+    </div>
+
+</div>
+
+<%- include('./partials/footer') %>

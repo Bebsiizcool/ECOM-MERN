@@ -23,8 +23,18 @@ if(process.env.NODE_ENV === "development"){
 
 
 router.get("/admin", (req, res)=>{
-    let success = req.flash("success")
-    res.render("createproducts", { success });
+    res.render("owner-login");
+})
+
+router.post("/admin", async(req,res)=>{
+    let {email, password}= req.body
+    let owner = await owenrModel.findOne({email, password})
+    if(owner){
+        let success = req.flash("success");
+        return res.render("createproducts", { success });
+    }
+
+    res.send("invalid credentials")
 })
 
 

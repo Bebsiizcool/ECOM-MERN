@@ -1,46 +1,177 @@
+
 <%- include('./partials/header') %>
 
-    <% if(error.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= error %>
-            </span>
-        </div>
-        <% } %>
-            <div class="w-full h-screen flex px-20">
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h3 class="text-4xl">welcome to <span class="text-blue-400 font-semibold">Scatch</span></h3>
-                        <h4 class="text-2xl mb-5">create your account</h4>
-                        <form autocomplete="off" action="/users/register" method="post">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="text" placeholder="Full Name" name="fullname">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="email" placeholder="Email" name="email">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="password" placeholder="Password" name="password">
-                            <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
-                                value="Create My Account">
-                        </form>
-                    </div>
-                </div>
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h4 class="text-2xl capitalize mb-5">login your account</h4>
-                        <form autocomplete="off" action="/users/login" method="post">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="email" placeholder="Email" name="email">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
-                                type="password" placeholder="Password" name="password">
-                            <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
-                                value="Login">
-                        </form>
-                    </div>
-                </div>
+<% if (error.length > 0) { %>
+    <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 p-4 rounded-xl bg-[#263A33] shadow-lg">
+        <span class="text-white text-sm font-medium">
+            <%= error[0] %>
+        </span>
+    </div>
+<% } %>
+
+<div class="min-h-screen bg-[#F7F4EE] text-[#242824]">
+
+    <div class="min-h-screen grid grid-cols-1 xl:grid-cols-[0.8fr_1.7fr]">
+
+        <!-- Left: Branding -->
+        <div class="flex flex-col justify-center px-8 sm:px-14 xl:px-16 py-12">
+
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-[#9A7B59] mb-5">
+                Everyday Carry · New Collection
+            </p>
+
+            <h1 class="text-5xl md:text-6xl font-semibold tracking-tight text-[#263A33] leading-tight">
+                Welcome to
+                <span class="block">Scatch.</span>
+            </h1>
+
+            <p class="mt-5 text-base text-[#77796F] max-w-md leading-7">
+                Discover everyday essentials made for your journey.
+                Create an account or sign in to explore our collection
+                and keep your favourite bags close.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <span class="px-4 py-2 rounded-full bg-[#E6DED0] text-[#263A33] text-sm">
+                    Everyday essentials
+                </span>
+
+                <span class="px-4 py-2 rounded-full bg-[#DCE5E1] text-[#263A33] text-sm">
+                    Timeless designs
+                </span>
             </div>
-            <%- include('./partials/footer') %>
+
+            <div class="mt-12 border-t border-[#E5DED2] pt-6">
+                <p class="text-sm text-[#77796F]">
+                    Carry your world. Your way.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right: Register and Login -->
+        <div class="flex items-center justify-center px-5 sm:px-8 xl:px-8 py-12 bg-white">
+
+            <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+                <!-- Register Panel -->
+                <div class="rounded-2xl border border-[#EAE5DC] bg-[#FDFCF9] p-6 lg:p-7 shadow-sm">
+
+                    <p class="text-xs font-semibold tracking-widest uppercase text-[#9A7B59] mb-2">
+                        Get started
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-[#263A33]">
+                        Create account
+                    </h2>
+
+                    <p class="text-sm text-[#77796F] mt-2 mb-6">
+                        Join Scatch and explore our collection.
+                    </p>
+
+                    <form autocomplete="off" action="/users/register" method="post">
+
+                        <label class="block text-sm font-medium text-[#424840] mb-1">
+                            Full name
+                        </label>
+
+                        <input
+                            class="block w-full bg-white px-3 py-3 border border-[#E5DED2] rounded-lg mb-4 outline-none focus:border-[#263A33] focus:ring-1 focus:ring-[#263A33] transition"
+                            type="text"
+                            placeholder="Your full name"
+                            name="fullname"
+                            required
+                        >
+
+                        <label class="block text-sm font-medium text-[#424840] mb-1">
+                            Email address
+                        </label>
+
+                        <input
+                            class="block w-full bg-white px-3 py-3 border border-[#E5DED2] rounded-lg mb-4 outline-none focus:border-[#263A33] focus:ring-1 focus:ring-[#263A33] transition"
+                            type="email"
+                            placeholder="you@example.com"
+                            name="email"
+                            required
+                        >
+
+                        <label class="block text-sm font-medium text-[#424840] mb-1">
+                            Password
+                        </label>
+
+                        <input
+                            class="block w-full bg-white px-3 py-3 border border-[#E5DED2] rounded-lg mb-5 outline-none focus:border-[#263A33] focus:ring-1 focus:ring-[#263A33] transition"
+                            type="password"
+                            placeholder="Create a password"
+                            name="password"
+                            required
+                        >
+
+                        <button
+                            class="w-full rounded-lg py-3 px-3 bg-[#263A33] text-white text-sm font-medium hover:bg-[#3B5548] transition"
+                            type="submit"
+                        >
+                            Create My Account
+                        </button>
+
+                    </form>
+                </div>
+
+                <!-- Login Panel -->
+                <div class="rounded-2xl border border-[#EAE5DC] bg-white p-6 lg:p-7 shadow-sm">
+
+                    <p class="text-xs font-semibold tracking-widest uppercase text-[#9A7B59] mb-2">
+                        Welcome back
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-[#263A33]">
+                        Login
+                    </h2>
+
+                    <p class="text-sm text-[#77796F] mt-2 mb-6">
+                        Already a member? Pick up where you left off.
+                    </p>
+
+                    <form autocomplete="off" action="/users/login" method="post">
+
+                        <label class="block text-sm font-medium text-[#424840] mb-1">
+                            Email address
+                        </label>
+
+                        <input
+                            class="block w-full bg-[#F7F4EE] px-3 py-3 border border-[#E5DED2] rounded-lg mb-4 outline-none focus:border-[#263A33] focus:ring-1 focus:ring-[#263A33] transition"
+                            type="email"
+                            placeholder="you@example.com"
+                            name="email"
+                            required
+                        >
+
+                        <label class="block text-sm font-medium text-[#424840] mb-1">
+                            Password
+                        </label>
+
+                        <input
+                            class="block w-full bg-[#F7F4EE] px-3 py-3 border border-[#E5DED2] rounded-lg mb-5 outline-none focus:border-[#263A33] focus:ring-1 focus:ring-[#263A33] transition"
+                            type="password"
+                            placeholder="Enter your password"
+                            name="password"
+                            required
+                        >
+
+                        <button
+                            class="w-full rounded-lg py-3 px-3 border border-[#263A33] text-[#263A33] text-sm font-medium hover:bg-[#263A33] hover:text-white transition"
+                            type="submit"
+                        >
+                            Login to Scatch
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>
