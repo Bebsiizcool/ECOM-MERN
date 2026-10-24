@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express');
 const app = express();
 const ejs = require("ejs")
@@ -13,7 +14,6 @@ const productsRouter = require("./routes/productsRouters")
 const indexRouter = require("./routes/indexRouter")
 const expressSession = require("express-session")
 const flash = require("connect-flash")
-require("dotenv").config()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -32,4 +32,8 @@ app.use("/owners", ownersRouter)
 app.use("/users", usersRouter)
 app.use("/products", productsRouter)
 
-app.listen(3000)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

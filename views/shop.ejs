@@ -129,7 +129,7 @@
                         <div class="w-full h-56 flex items-center justify-center overflow-hidden bg-[<%= product.bgcolor %>]">
                             <img
                                 class="h-[12rem] max-w-[90%] object-contain transition duration-300 group-hover:scale-105"
-                                src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                                src="<%= product.image %>"
                                 alt="<%= product.name %>"
                             >
                         </div>
